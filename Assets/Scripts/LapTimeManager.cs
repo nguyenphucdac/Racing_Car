@@ -13,8 +13,10 @@ public class LapTimeManager : MonoBehaviour {
 	public GameObject MinuteBox;
 	public GameObject SecondBox;
 	public GameObject MilliBox;
-
 	public static float RawTime;
+
+	public Transform Canvas;
+	public GameObject PauseDisplay;
 
 	void Update () {
 		MilliCount += Time.deltaTime * 10;
@@ -30,7 +32,7 @@ public class LapTimeManager : MonoBehaviour {
 		if (SecondCount <= 9) {
 			SecondBox.GetComponent<Text> ().text = "0" + SecondCount + ".";
 		} else {
-			SecondBox.GetComponent<Text>().text = "" + SecondCount + ".";
+			SecondBox.GetComponent<Text> ().text = "" + SecondCount + ".";
 		}
 
 		if (SecondCount >= 60) {
@@ -43,5 +45,25 @@ public class LapTimeManager : MonoBehaviour {
 		} else {
 			MinuteBox.GetComponent<Text> ().text = "" + MinuteCount + ":";
 		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (Canvas.gameObject.activeInHierarchy == false) {
+				Canvas.gameObject.SetActive (true);
+				Time.timeScale = 0;
+
+				PauseDisplay.SetActive (true);
+			} else {
+				Canvas.gameObject.SetActive (false);
+				PauseDisplay.SetActive (false);
+				Time.timeScale = 1;
+			}
+		}
+
+	}
+
+	public void Resume(){
+		Canvas.gameObject.SetActive (false);
+		PauseDisplay.SetActive (false);
+		Time.timeScale = 1;
 	}
 }

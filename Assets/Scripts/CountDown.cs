@@ -35,7 +35,7 @@ public class CountDown : MonoBehaviour {
 
 		yield return new WaitForSeconds (1);
 		Countdown.SetActive (false);
-		Countdown.GetComponent<Text> ().text = "Go!!!";
+		Countdown.GetComponent<Text> ().text = "G o !!!";
 		GetReady.Play ();
 		Countdown.SetActive (true);
 

@@ -17,5 +17,11 @@ public class ButtonOption : MonoBehaviour {
 	public void Track01(){
 		SceneManager.LoadScene (2);
 	}
+	public void Guide(){
+		SceneManager.LoadScene (4);
+	}
+	public void QuitGame(){
+		Application.Quit ();
+	}
 
 }

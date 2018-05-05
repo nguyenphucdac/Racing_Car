@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LoadLapTime : MonoBehaviour {
 
 	public string MinCount;
-	public int SecCount;
+	public string SecCount;
 	public int MilliCount;
 
 	public GameObject MinDisplay;
@@ -15,7 +15,13 @@ public class LoadLapTime : MonoBehaviour {
 
 	void Start () {
 		MinCount = "0" + PlayerPrefs.GetInt ("MinSave");
-		SecCount = PlayerPrefs.GetInt ("SecSave");
+
+		if (PlayerPrefs.GetInt ("SecSave") < 10) {
+			SecCount = "0" + PlayerPrefs.GetInt ("SecSave");
+		} else {
+			SecCount ="" + PlayerPrefs.GetInt ("SecSave");
+		}
+
 		MilliCount =(int) PlayerPrefs.GetFloat ("MilliSave");
 
 		MinDisplay.GetComponent<Text> ().text = "" + MinCount + ":";
